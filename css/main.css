@@ -4,16 +4,11 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-#grid-rows {
+.row {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
+  border: 1px solid red;
 }
 
 .square {

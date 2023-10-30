@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#grid-rows {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.square {
+  flex-basis: 100px;
+  aspect-ratio: 1;
+  border: 1px solid black;
+}

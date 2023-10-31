@@ -93,3 +93,26 @@ const randomColorBtn = document.querySelector(".random-color");
 randomColorBtn.addEventListener("click", () => {
   randomTrail();
 });
+
+// CUSTOM COLOR TRAIL
+const colorPickerBtn = document.querySelector(".color-picker");
+const colorPickerInput = document.querySelector("#color-picker");
+
+const customTrail = () => {
+  const selectedColor = colorPickerInput.value;
+  for (const gridSquare of gridSquares) {
+    gridSquare.addEventListener("mouseover", () => {
+      gridSquare.style.backgroundColor = selectedColor;
+    });
+  }
+};
+
+colorPickerBtn.addEventListener("click", () => {
+  // open the color picker
+  colorPickerInput.click();
+});
+
+// apply the selected color when the color input changes
+colorPickerInput.addEventListener("input", () => {
+  customTrail();
+});

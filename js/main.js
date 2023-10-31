@@ -1,5 +1,5 @@
 const gridContainer = document.querySelector("#grid-container");
-const num = 3;
+const num = 10;
 
 // create Grid based on the num input
 const createGrid = function (num) {
@@ -11,6 +11,7 @@ const createGrid = function (num) {
     for (let i = 0; i < num; i++) {
       const newSquare = document.createElement("div");
       newSquare.className = "square";
+      newSquare.style.flexBasis = `calc(100% / ${num})`; // make flex-basis 100% so that it fills out the container no matter the number of squares
       row.appendChild(newSquare);
     }
 

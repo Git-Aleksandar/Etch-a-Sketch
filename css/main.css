@@ -2,17 +2,79 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  border: 1px solid red;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* had to use left: 0 and right: 0 to center the footer - it went left when I added position: fixed and bottom: 0 */
+}
+
+body {
+  background-color: beige;
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.reset-button {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 2rem;
+  flex-basis: 120px;
+  margin: 2px;
+  background-color: bisque;
+  border: 1px outset black;
+  border-radius: 10px;
+  background-color: bisque;
+}
+
+.reset {
+  display: block;
+  margin: auto;
+}
+
+.btn:hover {
+  background-color: gold;
+}
+
+#grid-container {
+  border: 1px solid black; /* make the outer border same width as the inner ones */
+  max-height: 80vh;
+  aspect-ratio: 1;
+  margin: 1rem auto;
 }
 
 .row {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .square {
-  flex-basis: 100px;
-  aspect-ratio: 1;
-  border: 1px solid black;
+  /* flex-basis: 100%; // reassigned to js */
+  aspect-ratio: 1; /* maintain square shape */
+  border: 1px solid lightgrey;
 }

@@ -1,5 +1,6 @@
 // CREATE GRID BASED ON USER INPUT
 const gridContainer = document.querySelector("#grid-container");
+
 const createGrid = function (num) {
   // create a single row
   const createRow = function (num) {
@@ -20,10 +21,12 @@ const createGrid = function (num) {
   for (let i = 0; i < num; i++) {
     gridContainer.appendChild(createRow(num));
   }
+
+  // PUT THE COLOR TRAIL FUNCTIONS HERE
 };
 
 // GRID SIZE USER INPUT
-// it can all go inside one function, but this way is more modular and there is no need to call the funciton to activate the event listener on the sizeBtn
+// it can all go inside one function, but this way is more modular and there is no need to call the function to activate the event listener on the sizeBtn
 const sizeInput = () => {
   num = prompt("Select a number from 1 to 100");
   clearGrid(); // first clear the existing grid
@@ -49,3 +52,20 @@ clearBtn.addEventListener("click", () => {
 });
 
 createGrid(6); // optional: set the initial grid when the page is loaded - it will be overwritten when the sizeInput is entered
+
+// BLACK COLOR TRAIL
+const gridSquares = document.querySelectorAll(".square"); // Select all .square elements
+
+// for of seems most practical for iterating over a node list or an array
+const blackTrail = () => {
+  for (const gridSquare of gridSquares) {
+    gridSquare.addEventListener("mouseover", () => {
+      gridSquare.style.backgroundColor = "black";
+    });
+  }
+};
+
+const blackColorBtn = document.querySelector(".color-black");
+blackColorBtn.addEventListener("click", () => {
+  blackTrail();
+});

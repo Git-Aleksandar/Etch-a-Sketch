@@ -69,3 +69,27 @@ const blackColorBtn = document.querySelector(".color-black");
 blackColorBtn.addEventListener("click", () => {
   blackTrail();
 });
+
+// RANDOM COLOR TRAIL
+const randomTrail = () => {
+  for (const gridSquare of gridSquares) {
+    gridSquare.addEventListener("mouseover", () => {
+      // generate random rgb values
+      const randomRGB =
+        "rgb(" +
+        Math.floor(Math.random() * 256) +
+        "," +
+        Math.floor(Math.random() * 256) +
+        "," +
+        Math.floor(Math.random() * 256) +
+        ")";
+
+      gridSquare.style.backgroundColor = randomRGB;
+    });
+  }
+};
+
+const randomColorBtn = document.querySelector(".random-color");
+randomColorBtn.addEventListener("click", () => {
+  randomTrail();
+});

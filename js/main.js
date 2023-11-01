@@ -23,6 +23,71 @@ const createGrid = function (num) {
   }
 
   // PUT THE COLOR TRAIL FUNCTIONS HERE
+  // COLOR TRAILS
+
+  // BLACK COLOR TRAIL
+  const gridSquares = document.querySelectorAll(".square"); // Select all .square elements
+
+  // for of seems most practical for iterating over a node list or an array
+  const blackTrail = () => {
+    for (const gridSquare of gridSquares) {
+      gridSquare.addEventListener("mouseover", () => {
+        gridSquare.style.backgroundColor = "black";
+      });
+    }
+  };
+
+  const blackColorBtn = document.querySelector(".color-black");
+  blackColorBtn.addEventListener("click", () => {
+    blackTrail();
+  });
+
+  // RANDOM COLOR TRAIL
+  const randomTrail = () => {
+    for (const gridSquare of gridSquares) {
+      gridSquare.addEventListener("mouseover", () => {
+        // generate random rgb values
+        const randomRGB =
+          "rgb(" +
+          Math.floor(Math.random() * 256) +
+          "," +
+          Math.floor(Math.random() * 256) +
+          "," +
+          Math.floor(Math.random() * 256) +
+          ")";
+
+        gridSquare.style.backgroundColor = randomRGB;
+      });
+    }
+  };
+
+  const randomColorBtn = document.querySelector(".random-color");
+  randomColorBtn.addEventListener("click", () => {
+    randomTrail();
+  });
+
+  // CUSTOM COLOR TRAIL
+  const colorPickerBtn = document.querySelector(".color-picker");
+  const colorPickerInput = document.querySelector("#color-picker");
+
+  const customTrail = () => {
+    const selectedColor = colorPickerInput.value;
+    for (const gridSquare of gridSquares) {
+      gridSquare.addEventListener("mouseover", () => {
+        gridSquare.style.backgroundColor = selectedColor;
+      });
+    }
+  };
+
+  colorPickerBtn.addEventListener("click", () => {
+    // open the color picker
+    colorPickerInput.click();
+  });
+
+  // apply the selected color when the color input changes
+  colorPickerInput.addEventListener("input", () => {
+    customTrail();
+  });
 };
 
 // GRID SIZE USER INPUT
@@ -49,70 +114,7 @@ const clearGrid = () => {
 const clearBtn = document.querySelector(".reset");
 clearBtn.addEventListener("click", () => {
   clearGrid();
+  createGrid(10);
 });
 
-createGrid(6); // optional: set the initial grid when the page is loaded - it will be overwritten when the sizeInput is entered
-
-// BLACK COLOR TRAIL
-const gridSquares = document.querySelectorAll(".square"); // Select all .square elements
-
-// for of seems most practical for iterating over a node list or an array
-const blackTrail = () => {
-  for (const gridSquare of gridSquares) {
-    gridSquare.addEventListener("mouseover", () => {
-      gridSquare.style.backgroundColor = "black";
-    });
-  }
-};
-
-const blackColorBtn = document.querySelector(".color-black");
-blackColorBtn.addEventListener("click", () => {
-  blackTrail();
-});
-
-// RANDOM COLOR TRAIL
-const randomTrail = () => {
-  for (const gridSquare of gridSquares) {
-    gridSquare.addEventListener("mouseover", () => {
-      // generate random rgb values
-      const randomRGB =
-        "rgb(" +
-        Math.floor(Math.random() * 256) +
-        "," +
-        Math.floor(Math.random() * 256) +
-        "," +
-        Math.floor(Math.random() * 256) +
-        ")";
-
-      gridSquare.style.backgroundColor = randomRGB;
-    });
-  }
-};
-
-const randomColorBtn = document.querySelector(".random-color");
-randomColorBtn.addEventListener("click", () => {
-  randomTrail();
-});
-
-// CUSTOM COLOR TRAIL
-const colorPickerBtn = document.querySelector(".color-picker");
-const colorPickerInput = document.querySelector("#color-picker");
-
-const customTrail = () => {
-  const selectedColor = colorPickerInput.value;
-  for (const gridSquare of gridSquares) {
-    gridSquare.addEventListener("mouseover", () => {
-      gridSquare.style.backgroundColor = selectedColor;
-    });
-  }
-};
-
-colorPickerBtn.addEventListener("click", () => {
-  // open the color picker
-  colorPickerInput.click();
-});
-
-// apply the selected color when the color input changes
-colorPickerInput.addEventListener("input", () => {
-  customTrail();
-});
+createGrid(10); // optional: set the initial grid when the page is loaded - it will be overwritten when the sizeInput is entered

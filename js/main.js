@@ -131,3 +131,5 @@ clearBtn.addEventListener("click", () => {
 });
 
 createGrid(10); // optional: set the initial grid when the page is loaded - it will be overwritten when the sizeInput is entered
+
+// DARKENING TRAIL

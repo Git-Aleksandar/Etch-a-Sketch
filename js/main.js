@@ -22,7 +22,6 @@ const createGrid = function (num) {
     gridContainer.appendChild(createRow(num));
   }
 
-  // PUT THE COLOR TRAIL FUNCTIONS HERE
   // COLOR TRAILS
 
   // BLACK COLOR TRAIL
@@ -93,10 +92,24 @@ const createGrid = function (num) {
 // GRID SIZE USER INPUT
 // it can all go inside one function, but this way is more modular and there is no need to call the function to activate the event listener on the sizeBtn
 const sizeInput = () => {
-  num = prompt("Select a number from 1 to 100");
-  clearGrid(); // first clear the existing grid
-  createGrid(num); // create new grid based on user input
+  const input = prompt("Select a number from 1 to 100");
+
+  // check for the correct user input via prompt
+  if (input === null) {
+    return; // User canceled the prompt, nothing happens
+  }
+
+  const num = parseInt(input);
+  // check if num is a number from 1 to 100
+  if (!isNaN(num) && num >= 1 && num <= 100) {
+    clearGrid();
+    createGrid(num);
+  } else {
+    alert("Please enter a valid number between 1 and 100.");
+    sizeInput();
+  }
 };
+
 // add event listener to sizeBtn
 const sizeBtn = document.querySelector(".grid-size");
 sizeBtn.addEventListener("click", () => {

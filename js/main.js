@@ -1,3 +1,32 @@
+// CREATE A TOGGLE LIKE FUNCTIONALITY ON BUTTONS
+// track the toggle state for each button through variables
+let blackTrailEnabled = false;
+let randomTrailEnabled = false;
+let customTrailEnabled = false;
+
+const colorButtons = document.querySelectorAll(".color-button");
+
+// toggle the state of each button when clicked
+colorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const colorType = button.getAttribute("data-color-type");
+
+    switch (colorType) {
+      case "black":
+        blackTrailEnabled = !blackTrailEnabled;
+        break;
+      case "random":
+        randomTrailEnabled = !randomTrailEnabled;
+        break;
+      case "custom":
+        customTrailEnabled = !customTrailEnabled;
+        break;
+      default:
+        break;
+    }
+  });
+});
+
 // CREATE GRID BASED ON USER INPUT
 const gridContainer = document.querySelector("#grid-container");
 
@@ -31,7 +60,11 @@ const createGrid = function (num) {
   const blackTrail = () => {
     for (const gridSquare of gridSquares) {
       gridSquare.addEventListener("mouseover", () => {
-        gridSquare.style.backgroundColor = "black";
+        // check the toggle state variable
+        if (blackTrailEnabled) {
+          // apply the color
+          gridSquare.style.backgroundColor = "black";
+        }
       });
     }
   };
@@ -55,14 +88,18 @@ const createGrid = function (num) {
           Math.floor(Math.random() * 256) +
           ")";
 
-        gridSquare.style.backgroundColor = randomRGB;
+        if (randomTrailEnabled) {
+          gridSquare.style.backgroundColor = randomRGB;
+        }
       });
     }
   };
 
   const randomColorBtn = document.querySelector(".random-color");
   randomColorBtn.addEventListener("click", () => {
-    randomTrail();
+    if (randomTrailEnabled) {
+      randomTrail();
+    }
   });
 
   // CUSTOM COLOR TRAIL
@@ -73,13 +110,15 @@ const createGrid = function (num) {
     const selectedColor = colorPickerInput.value;
     for (const gridSquare of gridSquares) {
       gridSquare.addEventListener("mouseover", () => {
-        gridSquare.style.backgroundColor = selectedColor;
+        if (customTrailEnabled) {
+          gridSquare.style.backgroundColor = selectedColor;
+        }
       });
     }
   };
 
+  // show the color picker tool
   colorPickerBtn.addEventListener("click", () => {
-    // open the color picker
     colorPickerInput.click();
   });
 

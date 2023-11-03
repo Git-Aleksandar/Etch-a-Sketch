@@ -10,7 +10,7 @@ body {
 }
 
 body {
-  background-color: beige;
+  background: linear-gradient(135deg, #f0e68c, #8a2be2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,6 +32,8 @@ body {
 header,
 footer {
   text-align: center;
+  background-color: #add8e6;
+  color: #333;
 }
 
 header {
@@ -54,13 +56,14 @@ footer {
   padding: 0.5rem 2rem;
   flex-basis: 115px;
   margin: 2px;
-  background-color: bisque;
+  background-color: #006767;
+  color: #fff;
   border: 1px outset black;
   border-radius: 10px;
 }
 
 .btn:hover {
-  background-color: gold;
+  background-color: darkmagenta;
 }
 
 .row {

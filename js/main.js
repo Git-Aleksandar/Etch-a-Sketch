@@ -1,29 +1,70 @@
 // CREATE A TOGGLE LIKE FUNCTIONALITY ON BUTTONS
-// track the toggle state for each button through variables
-let blackTrailEnabled = false;
-let randomTrailEnabled = false;
-let customTrailEnabled = false;
 
 const colorButtons = document.querySelectorAll(".color-button");
 
-// toggle the state of each button when clicked
+let activeColorButton = null; // track the active color button
+
+// handle button click
+const handleButtonClick = (button, colorType) => {
+  // If the clicked button is active, deactivate it
+  if (activeColorButton === button) {
+    activeColorButton = null; // no active color button
+    button.classList.remove("active");
+    // deactivate the corresponding color trail
+    deactivateColorTrail(colorType);
+  } else {
+    // deactivate the previously active button
+    if (activeColorButton) {
+      activeColorButton.classList.remove("active");
+      // deactivate the corresponding color trail
+      deactivateColorTrail(activeColorButton.getAttribute("data-color-type"));
+    }
+    activeColorButton = button; // set the clicked button as active
+    button.classList.add("active");
+    // activate the corresponding color trail
+    activateColorTrail(colorType);
+  }
+};
+
+// activate a color trail
+const activateColorTrail = (colorType) => {
+  switch (colorType) {
+    case "black":
+      blackTrailEnabled = true;
+      break;
+    case "random":
+      randomTrailEnabled = true;
+      break;
+    case "custom":
+      customTrailEnabled = true;
+      break;
+    default:
+      break;
+  }
+};
+
+// deactivate a color trail
+const deactivateColorTrail = (colorType) => {
+  switch (colorType) {
+    case "black":
+      blackTrailEnabled = false;
+      break;
+    case "random":
+      randomTrailEnabled = false;
+      break;
+    case "custom":
+      customTrailEnabled = false;
+      break;
+    default:
+      break;
+  }
+};
+
+// add click event listeners to color buttons
 colorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const colorType = button.getAttribute("data-color-type");
-
-    switch (colorType) {
-      case "black":
-        blackTrailEnabled = !blackTrailEnabled;
-        break;
-      case "random":
-        randomTrailEnabled = !randomTrailEnabled;
-        break;
-      case "custom":
-        customTrailEnabled = !customTrailEnabled;
-        break;
-      default:
-        break;
-    }
+    handleButtonClick(button, colorType);
   });
 });
 
